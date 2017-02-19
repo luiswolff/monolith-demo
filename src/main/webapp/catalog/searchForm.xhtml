@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/WEB-INF/templates/main.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="title">Item : View all</ui:define>
+    <ui:define name="content">
+        <h:form id="catalogSearch">
+            <p:panelGrid columns="1">
+                <p:outputLabel for="name" value="Search for Item by Name:"/>
+                <p:inputText id="name" value="#{catalogController.name}" placeholder="Item name"/>
+                <p:commandButton id="submit" value="Submit" action="list" ajax="false" />
+            </p:panelGrid>
+        </h:form>
+    </ui:define>
+</ui:composition>

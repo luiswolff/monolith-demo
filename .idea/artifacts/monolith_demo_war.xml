@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="monolith-demo:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="monolith-demo.war">
+      <element id="artifact" artifact-name="monolith-demo:war exploded" />
+    </root>
+  </artifact>
+</component>

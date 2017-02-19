@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/WEB-INF/templates/main.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="title">Order</ui:define>
+    <ui:define name="header">
+        <h1>Order : Add</h1>
+    </ui:define>
+    <ui:define name="content">
+        <h:form id="createOrder">
+            <p:panelGrid columns="2">
+                <p:outputLabel value="Customer" for="selectCustomer" />
+                <p:selectOneMenu id="selectCustomer" value="#{order.customer}" converter="#{customerController}">
+                    <f:selectItems value="#{orderController.customerList}" var="c" itemLabel="#{c.firstname} #{c.name}" itemValue="#{c}" />
+                </p:selectOneMenu>
+            </p:panelGrid>
+            <p:separator/>
+            <p:dataTable id="orderLines" value="#{order.orderLines}" var="ol" rowIndexVar="index">
+                <p:column headerText="ID">
+                    <!--suppress ELValidationInJSP -->
+                    <h:outputText value="#{index + 1}" />
+                </p:column>
+                <p:column headerText="Count">
+                    <p:inputText value="#{ol.count}" />
+                </p:column>
+                <p:column headerText="Item">
+                    <p:selectOneMenu value="#{ol.item}" converter="#{catalogController}">
+                        <f:selectItems value="#{orderController.itemList}" var="i" itemLabel="#{i.name}" itemValue="#{i}" />
+                    </p:selectOneMenu>
+                </p:column>
+            </p:dataTable>
+            <p:commandButton value="Add Line" actionListener="#{orderController.addLine()}" process="@form" update="orderLines" ajax="false"/>
+            <p:commandButton value="Submit" action="#{orderController.doOrder()}" ajax="false"/>
+        </h:form>
+    </ui:define>
+</ui:composition>

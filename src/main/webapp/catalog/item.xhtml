@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/WEB-INF/templates/main.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:metadata>
+        <f:viewParam name="id" value="#{catalogController.id}" required="false"/>
+        <f:viewAction action="#{catalogController.loadItem()}"/>
+    </f:metadata>
+    <ui:define name="title">Item: Edit</ui:define>
+    <ui:define name="header">
+        <h1>Item : Edit</h1>
+    </ui:define>
+    <ui:define name="content">
+        <h:form id="editItem">
+            <h:inputHidden value="#{item.id}"/>
+            <p:panelGrid columns="1">
+                <p:outputLabel value="Name" for="itemName"/>
+                <p:inputText id="itemName" value="#{item.name}" placeholder="name"/>
+            </p:panelGrid>
+            <p:panelGrid columns="1">
+                <p:outputLabel value="Price" for="itemPrice"/>
+                <p:inputText id="itemPrice" value="#{item.price}" placeholder="price"/>
+            </p:panelGrid>
+            <p:commandButton id="submit" value="Submit" action="#{catalogController.save()}" ajax="false"/>
+        </h:form>
+    </ui:define>
+</ui:composition>

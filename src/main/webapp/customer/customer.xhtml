@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/WEB-INF/templates/main.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="title">Item: Edit</ui:define>
+    <ui:define name="header">
+        <h1>Item : Edit</h1>
+    </ui:define>
+    <ui:define name="content">
+        <p:outputPanel>
+            <h:form id="editCustomer">
+                <h:inputHidden value="#{customer.id}" />
+                <p:panelGrid columns="1">
+                    <p:outputLabel value="Name" for="customerName" />
+                    <p:inputText id="customerName" value="#{customer.name}" placeholder="name" />
+                </p:panelGrid>
+                <p:panelGrid columns="1">
+                    <p:outputLabel value="Firstname" for="customerFirstname" />
+                    <p:inputText id="customerFirstname" value="#{customer.firstname}" placeholder="firstname" />
+                </p:panelGrid>
+                <p:panelGrid columns="1">
+                    <p:outputLabel value="Email" for="customerEmail" />
+                    <p:inputText id="customerEmail" value="#{customer.email}" placeholder="email" />
+                </p:panelGrid>
+                <p:panelGrid columns="1">
+                    <p:outputLabel value="Street" for="customerStreet" />
+                    <p:inputText id="customerStreet" value="#{customer.street}" placeholder="street" />
+                </p:panelGrid>
+                <p:panelGrid columns="1">
+                    <p:outputLabel value="City" for="customerCity" />
+                    <p:inputText id="customerCity" value="#{customer.city}" placeholder="city" />
+                </p:panelGrid>
+                <p:commandButton value="Submit" action="#{customerController.save()}" ajax="false"/>
+            </h:form>
+        </p:outputPanel>
+    </ui:define>
+</ui:composition>

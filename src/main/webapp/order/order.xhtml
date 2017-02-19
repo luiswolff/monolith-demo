@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/WEB-INF/templates/main.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+    <f:metadata>
+        <f:viewParam name="id" value="#{orderController.orderId}" />
+        <f:viewAction action="#{orderController.loadOrder()}" />
+    </f:metadata>
+    <ui:define name="title">Order</ui:define>
+    <ui:define name="header">
+        <h1>Order</h1></ui:define>
+    <ui:define name="content">
+        <p:panelGrid columns="2">
+            <h:outputText value="Customer"/>
+            <h:outputText value="#{order.customer.firstname} #{order.customer.name}" />
+            <h:outputText value="Total price" />
+            <h:outputText value="#{order.totalPrice()}" />
+        </p:panelGrid>
+        <p:separator />
+        <p:dataTable value="#{order.orderLines}" var="ol">
+            <p:column headerText="Quantity">
+                <h:outputText value="#{ol.count}" />
+            </p:column>
+            <p:column headerText="Item">
+                <h:outputText value="#{ol.item.name}" />
+            </p:column>
+            <p:column headerText="Price">
+                <h:outputText value="#{ol.item.price}" />
+            </p:column>
+        </p:dataTable>
+    </ui:define>
+</ui:composition>

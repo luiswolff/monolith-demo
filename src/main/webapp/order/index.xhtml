@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/WEB-INF/templates/main.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Order : View all</ui:define>
+    <ui:define name="header">
+        <h1>Order : View all</h1></ui:define>
+    <ui:define name="content">
+        <p:dataTable value="#{orderController.orderList}" var="o">
+            <p:column headerText="ID">
+                <p:link outcome="order" value="#{o.id}">
+                    <f:param name="id" value="#{o.id}" />
+                </p:link>
+            </p:column>
+            <p:column headerText="Customer">
+                <h:outputText value="#{o.customer.firstname} #{o.customer.name}" />
+            </p:column>
+            <p:column headerText="TotalPrice">
+                <h:outputText value="#{o.totalPrice()}" />
+            </p:column>
+            <p:column>
+                <h:form>
+                    <p:commandLink action="#{orderController.delete(o.id)}" value="delete" />
+                </h:form>
+            </p:column>
+        </p:dataTable>
+        <p:link outcome="form" value="Add Order" />
+    </ui:define>
+</ui:composition>
